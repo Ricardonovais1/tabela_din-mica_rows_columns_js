@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Change the content of a cell</title>
+<style type="text/css">
+body {margin: 30px;}
+</style>  
+</head>
+    <body>
+    <table id="myTable" border="1">
+
+    </table>
+        <form>
+            <input type="button" onclick="createTable()" value="Crie sua tabela">
+        </form>
+        <script>
+            (function(){
+
+                const table = document.getElementById("myTable");
+                const tableCreationButton = document.querySelector("form input");
+
+                console.log(tableCreationButton)
+
+                let row = window.prompt("Defina quantas linhas horizontais para sua tabela:");
+                let column = window.prompt("Defina quantas colunas terá sua tabela:");
+
+                tableCreationButton.addEventListener("click", () => {
+
+                    let tBody = document.createElement('tBody');
+
+                    for (let r = 0; r < row; r ++) {
+                        const newRow = document.createElement('tr');
+
+                        for (let c = 0; c < column; c ++) {
+
+                            const newCell = document.createElement('td');
+
+                            const innerText = document.createTextNode(`Linha-${r + 1} Coluna-${c + 1}`);
+
+                            newCell.appendChild(innerText);
+                            newRow.appendChild(newCell);
+                        }
+                        tBody.appendChild(newRow);
+                        table.appendChild(tBody);
+                    }
+
+                });
+
+
+
+            })()
+        </script>
+    </body>
+</html>
